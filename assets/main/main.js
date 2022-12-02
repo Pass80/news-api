@@ -1,9 +1,11 @@
+import API_KEY from './config.js';
 const searchTxt = document.querySelector('#search-txt');
 const searchBtn = document.querySelector('#search-btn');
 const article = document.querySelector('article');
-const countries = document.querySelector('.countries');
 const newsCategories = document.querySelector('.news-categories');
-const myKey = config.API_KEY;
+const german = document.querySelector('#de');
+const english = document.querySelector('#us');
+const french = document.querySelector('#fr');
 
 const categoriesArray = [
     'business',
@@ -14,7 +16,6 @@ const categoriesArray = [
     'sports',
     'technology',
 ];
-const countriesAndLanguages = ['de', 'en', 'fr'];
 
 categoriesArray.forEach((category) => {
     const list = document.createElement('li');
@@ -52,9 +53,7 @@ const generateNewsArticles = (array) => {
 };
 
 const getSearchResults = (query) => {
-    fetch(
-        `https://newsapi.org/v2/everything?q=${query}&pageSize=6&page=1&apiKey=${myKey}`
-    )
+    fetch(`https://newsapi.org/v2/everything?q=${query}&apiKey=${API_KEY}`)
         .then((res) => res.json())
         .then((data) => {
             generateNewsArticles(data);
@@ -64,7 +63,7 @@ const getSearchResults = (query) => {
 const getCategoriesResults = (category) => {
     article.textContent = '';
     fetch(
-        `https://newsapi.org/v2/top-headlines?country=us&category=${category}&pageSize=6&page=1&apiKey=${myKey}`
+        `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
     )
         .then((res) => res.json())
         .then((data) => {
@@ -75,7 +74,7 @@ const getCategoriesResults = (category) => {
 const countryNews = (code) => {
     article.textContent = '';
     fetch(
-        `https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${myKey}`
+        `https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${API_KEY}`
     )
         .then((res) => res.json())
         .then((data) => {
@@ -83,7 +82,17 @@ const countryNews = (code) => {
         });
 };
 
-fetch('https://newsapi.org/v2/everything?q=news&apiKey=${myKey}')
+german.addEventListener('click', () => {
+    countryNews('de');
+});
+english.addEventListener('click', () => {
+    countryNews('us');
+});
+french.addEventListener('click', () => {
+    countryNews('fr');
+});
+
+fetch(`https://newsapi.org/v2/everything?q=news&apiKey=${API_KEY}`)
     .then((res) => res.json())
     .then((data) => {
         generateNewsArticles(data);
