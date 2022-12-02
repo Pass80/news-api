@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <header>
+            <form onsubmit="return false">
+                <input type="text" id="search-txt" /><input
+                    type="submit"
+                    value="search"
+                    id="search-btn"
+                />
+            </form>
+        </header>
+        <section>
+            <aside>
+                <ul class="countries">
+                    <h2>Countries</h2>
+                    <li id="de" onclick="countryNews(id)">GERMANY</li>
+                    <li id="us" onclick="countryNews(id)">USA</li>
+                    <li id="fr" onclick="countryNews(id)">FRANCE</li>
+                </ul>
+                <ul class="news-categories">
+                    <h2>Categories</h2>
+                </ul>
+            </aside>
+            <article></article>
+        </section>
+        <script type="text/javascript" src="config.js"></script>
+        <script src="assets/main/main.js"></script>
+    </body>
+</html>
